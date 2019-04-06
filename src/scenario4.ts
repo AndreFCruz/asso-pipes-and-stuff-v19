@@ -13,7 +13,48 @@ No implicit connections between subscribers and producers:
 
 
 */
+import {Queue} from "./queue/api";
+import { Observable, Publisher, Broker} from './stuff'
+
 
 export function testScenarioFour() {
-    // TODO
+
+
+    // Creating Broker
+    const broker = new Broker()
+
+    // Creating Publishers
+    const publisher = new Publisher(1)
+    const publisher2 = new Publisher(2)
+
+    // Creating Subscribers
+    const subscriberA = new Observable(1)
+    const subscriberB = new Observable(2)
+    const subscriberC = new Observable(3)
+    const subscriberD = new Observable(4)
+
+    // Subscribing to the Broker
+    broker.addSubscription(subscriberA, publisher)
+    broker.addSubscription(subscriberB, publisher)
+    broker.addSubscription(subscriberC, publisher)
+    broker.addSubscription(subscriberA, publisher2)
+    broker.addSubscription(subscriberB, publisher2)
+    broker.addSubscription(subscriberC, publisher2)
+
+    console.log("here");
+
+    /*
+    (async () => {
+        setTimeout(() => publisher.run(Date.now() + 5000, queue), 100)
+        // Notify all of our subscribers about the messages
+        ventilator.run(Date.now() + 5000, queue)
+
+        publisher2.run(Date.now() + 5000, queue)
+    })()
+
+    subscriberD.subscribeVentilator(ventilator)
+    */
+
 }
+
+testScenarioFour();
