@@ -23,7 +23,7 @@ export class Broker<T> {
     }
 
     addSubscription(ob: Observer<T>, pub: Publisher<T>){
-        if (!(pub.id in this.publishers))
+        if (!(pub.id in this.ventilators))
             this.addPublisher(pub)
         
         this.ventilators[pub.id].addObserver(ob)
