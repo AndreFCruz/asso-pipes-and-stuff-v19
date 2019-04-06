@@ -39,22 +39,18 @@ export function testScenarioFour() {
     broker.addSubscription(subscriberC, publisher)
     broker.addSubscription(subscriberA, publisher2)
     broker.addSubscription(subscriberB, publisher2)
-    broker.addSubscription(subscriberC, publisher2)
+    broker.addSubscription(subscriberC, publisher2);
 
-    console.log("here");
-
-    /*
     (async () => {
-        setTimeout(() => publisher.run(Date.now() + 5000, queue), 100)
-        // Notify all of our subscribers about the messages
-        ventilator.run(Date.now() + 5000, queue)
+        setTimeout(() => publisher.run(Date.now() + 5000, broker.queues[publisher.id]), 100)
 
-        publisher2.run(Date.now() + 5000, queue)
+        // Start running the
+        broker.run(Date.now() + 5000)
+
+        publisher2.run(Date.now() + 5000, broker.queues[publisher2.id])
     })()
 
-    subscriberD.subscribeVentilator(ventilator)
-    */
-
+    broker.addSubscription(subscriberD, publisher)
 }
 
 testScenarioFour();
